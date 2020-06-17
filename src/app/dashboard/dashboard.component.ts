@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit{
   searchForm: FormGroup;
   dataSource = new MatTableDataSource([]);
   data: any[];
+  oldData: any[];
   displayedColumns: string[] = ['id', 'name', 'organization', 'status', 'actions'];
   subColumns: string[] = ['email', 'degree', 'actions'];
   expandedElement: any | null;
@@ -68,6 +69,7 @@ export class DashboardComponent implements OnInit{
     this.data = [];
     this.dashBoardService.getHeroes().subscribe(res => {
       this.dataSource.data = res;
+      this.oldData = this.dataSource.data;
     });
 
     // get tab index
@@ -130,7 +132,7 @@ export class DashboardComponent implements OnInit{
 
   reset() {
     this.searchForm.reset();
-    this.dataSource.data = this.data;
+    this.dataSource.data = this.oldData;
   }
 
   search() {
@@ -181,6 +183,7 @@ export class DashboardComponent implements OnInit{
     dialogRef.afterClosed().subscribe(res => {
       this.dashBoardService.addHero(res).subscribe(ret => {
         this.dataSource.data.push(ret);
+        this.oldData = this.dataSource.data;
         this.data = [];
         this.dataSource._updateChangeSubscription();
       });
