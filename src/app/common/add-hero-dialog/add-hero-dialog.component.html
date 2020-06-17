@@ -1,0 +1,42 @@
+<form [formGroup]='form'>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput required [formControl]="form.controls['name']">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <mat-label>Organization</mat-label>
+        <select matNativeControl required [formControl]="form.controls['organization']">
+            <option value="company">Company</option>
+            <option value="department">Department</option>
+        </select>
+    </mat-form-field>
+    <br>
+    
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput required [formControl]="form.controls['email']">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <mat-label>Degree</mat-label>
+        <input matInput [formControl]="form.controls['degree']">
+    </mat-form-field>
+    <br>
+
+    <div>
+        <mat-label>Status</mat-label>
+        <mat-radio-group [formControl]="form.controls['status']" required>
+            <mat-radio-button value="new">New</mat-radio-button>
+            <mat-radio-button value="under review">Under Review</mat-radio-button>
+            <mat-radio-button value="closed">Closed</mat-radio-button>
+        </mat-radio-group>
+    </div> 
+    <br>
+
+
+    <button mat-stroked-button color="primary" (click)="cancel()" type="button">Cancel</button>
+    <button mat-stroked-button color="warn" (click)="add()" type="button">Add</button>
+</form>

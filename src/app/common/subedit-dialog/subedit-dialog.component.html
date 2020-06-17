@@ -1,0 +1,19 @@
+<form [formGroup]='form'>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput required [formControl]="form.controls['email']">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Degree</mat-label>
+        <input matInput required [formControl]="form.controls['degree']">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Additional Notes</mat-label>
+        <textarea matInput [formControl]="form.controls['note']"></textarea>
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" (click)="cancel()" type="button">Cancel</button>
+    <button mat-stroked-button color="warn" (click)="save()" type="button">Save</button>
+</form>

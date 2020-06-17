@@ -1,0 +1,45 @@
+
+<mat-list>
+    <mat-list-item>Basic Info</mat-list-item>
+    <mat-divider></mat-divider>
+    <form [formGroup]='form'>
+        <mat-form-field appearance="fill">
+            <mat-label>ID</mat-label>
+            <input matInput [formControl]="form.controls['id']" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput [formControl]="form.controls['name']" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Organization Type</mat-label>
+            <mat-select [formControl]="form.controls['organization']" required>
+                <mat-option value="company">Company</mat-option>
+                <mat-option value="department">Department</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Favorite Food</mat-label>
+            <mat-select [formControl]="form.controls['food']">
+                <mat-option *ngFor="let food of foodList" value="food">{{ food }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-label id='status'>Status</mat-label>
+        <mat-radio-group  (change)="radioChange($event)">
+            <mat-radio-button [checked]="status==='new'" value="new">New</mat-radio-button>
+            <mat-radio-button [checked]="status==='under review'" value="under review">Under Review</mat-radio-button>
+            <mat-radio-button [checked]="status==='closed'" value="closed">Closed</mat-radio-button>
+        </mat-radio-group>
+
+        <button mat-raised-button (click)="cancel()" type="button">Cancel</button>
+        <button mat-raised-button color="primary" (click)="save()" type="button">Save</button>
+
+    </form>
+
+    <mat-list-item>Address</mat-list-item>
+    <mat-divider></mat-divider>
+</mat-list>
